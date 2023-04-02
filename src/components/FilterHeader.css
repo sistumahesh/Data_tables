@@ -1,0 +1,7 @@
+.FilterHeaderWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 20px 30px;
+}

@@ -1,0 +1,7 @@
+.TableHeaderCell{
+    font-weight: bold;
+    border-right: 1px solid #ccc
+}
+.TableBodyCell{
+    border-right: 1px solid #ccc
+}
