@@ -5,67 +5,137 @@ import React, { useEffect } from 'react';
  import Select, { SelectChangeEvent } from '@mui/material/Select';
  import { useState } from 'react';
 import { Close } from '@mui/icons-material';
-const FilterMenu: React.FC = () => {
-    const [selectedValues,setSelectedValues]=useState<string[]>([])
-
-    const [machine, setMachine] = useState({});
+type selectedValuesType = {
+    name?: any,
+    value?: any
+}
+const FilterMenu: React.FC<selectedValuesType> = () => {
+    
+    const [selectedValues,setSelectedValues]=useState<(selectedValuesType | undefined)[]>([])
+    const [machine, setMachine] = useState('');
     const handleMachineChange = (event: SelectChangeEvent) => {
-        console.log(event.target)
-        setMachine(event.target);
-    };
-    const [runType, setRunType] = useState({});
+        setMachine(event.target.value);
+        const isMachineExist = selectedValues.filter((obj)=>obj?.name==='machine').length
+        if(isMachineExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='machine'){
+                    setSelectedValues((prev)=>{
+
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='machine')),{...obj,value:event.target.value}]
+                })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
+    }
+    const [runType, setRunType] = useState('');
     const handleRunTypeChange = (event: SelectChangeEvent) => {
-        setRunType(event.target);
-        
+        setRunType(event.target.value);
+        const isRunTypeExist = selectedValues.filter((obj)=>obj?.name==='runType').length
+        if(isRunTypeExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='runType'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='runType')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
     };
-    const [hardwareVersion, setHardwareVersion] = useState({});
+    const [hardwareVersion, setHardwareVersion] = useState('');
     const handleHardwareVersionChange = (event: SelectChangeEvent) => {
-        setHardwareVersion(event.target);
-        
+        setHardwareVersion(event.target.value);
+        const isHardwareVersionExist = selectedValues.filter((obj)=>obj?.name==='hardwareVersion').length
+        if(isHardwareVersionExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='hardwareVersion'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='hardwareVersion')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
     };
-    const [softwareVersion, setSoftwareVersion] = useState({});
+    const [softwareVersion, setSoftwareVersion] = useState('');
     const handleSoftwareVersionChange = (event: SelectChangeEvent) => {
-        setSoftwareVersion(event.target);
+        setSoftwareVersion(event.target.value);
+        const isSoftwareVersionExist = selectedValues.filter((obj)=>obj?.name==='softwareVersion').length
+        if(isSoftwareVersionExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='softwareVersion'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='softwareVersion')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
         
     };
-    const [machineUse, setMachineUse] = useState({});
+    const [machineUse, setMachineUse] = useState('');
     const handleMachineUseChange = (event: SelectChangeEvent) => {
-        setMachineUse(event.target);
+        setMachineUse(event.target.value);
+        const isMachineUseExist = selectedValues.filter((obj)=>obj?.name==='machineUse').length
+        if(isMachineUseExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='machineUse'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='machineUse')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
         
     };
+   
+    // useEffect(()=>{
+    //     if(machine){
+    //         console.log(selectedValues)
+    //         // setSelectedValues(prevSelectedOptions => {...prevSelectedOptions})
+    //     }
+    // },[machine])
+    // useEffect(()=>{
+    //     if(runType){
+    //         console.log(runType)
+    //         // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions,runType])
+    //     }    
+    // },[runType])
+    // useEffect(()=>{
+    //     if(hardwareVersion){
+    //         console.log(hardwareVersion)
+    //         // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, hardwareVersion])
+    //     }
+    // },[hardwareVersion])
+    // useEffect(()=>{
+    //     if(softwareVersion)
+    //     {
+    //         console.log(softwareVersion)
+    //         // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, softwareVersion])
+    //     }   
+    // },[softwareVersion])
+    // useEffect(()=>{
+    //     if(machineUse){
+    //         console.log(machineUse)
+    //         // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, machineUse])
+    //     }
+    // },[machineUse])
     useEffect(()=>{
-        if(machine){
-            console.log(machine)
-            // setSelectedValues(prevSelectedOptions => {...prevSelectedOptions})
-        }
-    },[machine])
-    useEffect(()=>{
-        if(runType){
-            console.log(runType)
-            // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions,runType])
-        }    
-    },[runType])
-    useEffect(()=>{
-        if(hardwareVersion){
-            console.log(hardwareVersion)
-            // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, hardwareVersion])
-        }
-    },[hardwareVersion])
-    useEffect(()=>{
-        if(softwareVersion)
-        {
-            console.log(softwareVersion)
-            // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, softwareVersion])
-        }   
-    },[softwareVersion])
-    useEffect(()=>{
-        if(machineUse){
-            console.log(machineUse)
-            // setSelectedValues(prevSelectedOptions => [...prevSelectedOptions, machineUse])
-        }
-    },[machineUse])
-    useEffect(()=>{
+        if(selectedValues){
             console.log(selectedValues)    
+        }
     },[selectedValues])
 
     return ( 
@@ -78,8 +148,8 @@ const FilterMenu: React.FC = () => {
                 labelId="machine-label"
                 id="machine"
                 name='machine'
-                value={machine.value}
-                onChange={(e)=>handleMachineChange(e)}
+                value={machine}
+                onChange={handleMachineChange}
                 label="machine"
                 >
                 <MenuItem value={'Ten'}>Ten</MenuItem>
@@ -94,7 +164,7 @@ const FilterMenu: React.FC = () => {
                 labelId="runtype-label"
                 id="runtype"
                 name='runType'
-                value={runType.value}
+                value={runType}
                 onChange={handleRunTypeChange}
                 label="runtype"
                 >
@@ -110,7 +180,7 @@ const FilterMenu: React.FC = () => {
                 labelId="hardwareVersion-label"
                 id="hardwareVersion"
                 name='hardwareVersion'
-                value={hardwareVersion.value}
+                value={hardwareVersion}
                 onChange={handleHardwareVersionChange}
                 label="hardwareVersion"
                 >
@@ -126,7 +196,7 @@ const FilterMenu: React.FC = () => {
                 labelId="softwareVersion-label"
                 id="softwareVersion"
                 name='softwareVersion'
-                value={softwareVersion.value}
+                value={softwareVersion}
                 onChange={handleSoftwareVersionChange}
                 label="softwareVersion"
                 >
@@ -142,7 +212,7 @@ const FilterMenu: React.FC = () => {
                 labelId="machineUse-label"
                 id="machineUse"
                 name='machineUse'
-                value={machineUse.value}
+                value={machineUse}
                 onChange={handleMachineUseChange}
                 label="machineUse"
                 >
