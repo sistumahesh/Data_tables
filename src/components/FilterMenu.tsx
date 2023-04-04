@@ -100,9 +100,37 @@ const FilterMenu: React.FC<Props> = (props) => {
         else{
             setSelectedValues([...selectedValues,event.target])
         }
+        setRunType(event.target.value);
+        const isRunTypeExist = selectedValues.filter((obj)=>obj?.name==='runType').length
+        if(isRunTypeExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='runType'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='runType')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
     };
     const [hardwareVersion, setHardwareVersion] = useState('');
     const handleHardwareVersionChange = (event: SelectChangeEvent) => {
+        setHardwareVersion(event.target.value);
+        const isHardwareVersionExist = selectedValues.filter((obj)=>obj?.name==='hardwareVersion').length
+        if(isHardwareVersionExist){
+            selectedValues.map((obj)=>{
+                if(obj?.name==='hardwareVersion'){
+                    setSelectedValues((prev)=>{
+                        return [...(prev.filter((prevObj)=>prevObj?.name!=='hardwareVersion')),{...obj,value:event.target.value}]
+                    })
+                }
+            })
+        }
+        else{
+            setSelectedValues([...selectedValues,event.target])
+        }
         setHardwareVersion(event.target.value);
         const isHardwareVersionExist = selectedValues.filter((obj)=>obj?.name==='hardwareVersion').length
         if(isHardwareVersionExist){
@@ -246,17 +274,26 @@ const FilterMenu: React.FC<Props> = (props) => {
     }
     return ( 
         <div style={{display:"flex",flexDirection:"row",padding:"20px 0",alignItems:"center",justifyContent:"space-evenly"}}>
+
             <FormControl style={{background:"white"}}
+
              variant="standard" sx={{ minWidth: 160 }}>
+
                 <InputLabel   id="machine-label">Machine</InputLabel>
+
                 <Select
+
                 sx={{padding:"0 10px"}}
+
                 labelId="machine-label"
+
                 id="machine"
+
                 name='machine'
                 value={machine}
                 onChange={handleMachineChange}
                 label="machine"
+
                 >
                 {
                     dropDownValues.map((dValues,index)=>{
@@ -266,17 +303,27 @@ const FilterMenu: React.FC<Props> = (props) => {
                     })
                 }
                 </Select>
+
             </FormControl>
+
             <FormControl style={{background:"white"}}  variant="standard" sx={{ minWidth: 160 }}>
+
                 <InputLabel id="runtype-label">Run type</InputLabel>
+
                 <Select
+
                 sx={{padding:"0 10px"}}
+
                 labelId="runtype-label"
+
                 id="runtype"
+
                 name='runType'
                 value={runType}
                 onChange={handleRunTypeChange}
+
                 label="runtype"
+
                 >
                 {
                     dropDownValues.map((dValues,index)=>{
@@ -286,17 +333,27 @@ const FilterMenu: React.FC<Props> = (props) => {
                     })
                 }
                 </Select>
+
             </FormControl>
+
             <FormControl style={{background:"white"}} variant="standard" sx={{ minWidth: 160 }}>
+
                 <InputLabel id="hardwareVersion-label">Hardware version</InputLabel>
+
                 <Select
+
                 sx={{padding:"0 10px"}}
+
                 labelId="hardwareVersion-label"
+
                 id="hardwareVersion"
+
                 name='hardwareVersion'
                 value={hardwareVersion}
                 onChange={handleHardwareVersionChange}
+
                 label="hardwareVersion"
+
                 >
                 {
                     dropDownValues.map((dValues,index)=>{
@@ -306,17 +363,27 @@ const FilterMenu: React.FC<Props> = (props) => {
                     })
                 }
                 </Select>
+
             </FormControl>
+
             <FormControl style={{background:"white"}} variant="standard" sx={{ minWidth: 160 }}>
+
                 <InputLabel id="softwareVersion-label">Software version</InputLabel>
+
                 <Select
+
                 sx={{padding:"0 10px"}}
+
                 labelId="softwareVersion-label"
+
                 id="softwareVersion"
+
                 name='softwareVersion'
                 value={softwareVersion}
                 onChange={handleSoftwareVersionChange}
+
                 label="softwareVersion"
+
                 >
                 {
                     dropDownValues.map((dValues,index)=>{
@@ -326,17 +393,27 @@ const FilterMenu: React.FC<Props> = (props) => {
                     })
                 }
                 </Select>
+
             </FormControl>
+
             <FormControl style={{background:"white"}} variant="standard" sx={{ minWidth: 160 }}>
+
                 <InputLabel id="machineUse-label">Machine use</InputLabel>
+
                 <Select
+
                 sx={{padding:"0 10px"}}
+
                 labelId="machineUse-label"
+
                 id="machineUse"
+
                 name='machineUse'
                 value={machineUse}
                 onChange={handleMachineUseChange}
+
                 label="machineUse"
+
                 >
                 {
                     dropDownValues.map((dValues,index)=>{
@@ -346,12 +423,17 @@ const FilterMenu: React.FC<Props> = (props) => {
                     })
                 }
                 </Select>
+
             </FormControl>
             <Button variant='contained' size="small" onClick={handleApplyFilter} startIcon={<FilterAlt/>}>Apply Filters</Button>
             <Button variant="contained" size="small"  onClick={handleClearFilter} color="secondary" startIcon={<ClearAll/>}>Clear Filters</Button>
 
         </div>
+
      );
+
 }
+
  
+
 export default FilterMenu;
