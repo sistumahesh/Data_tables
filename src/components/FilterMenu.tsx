@@ -100,20 +100,7 @@ const FilterMenu: React.FC<Props> = (props) => {
         else{
             setSelectedValues([...selectedValues,event.target])
         }
-        setRunType(event.target.value);
-        const isRunTypeExist = selectedValues.filter((obj)=>obj?.name==='runType').length
-        if(isRunTypeExist){
-            selectedValues.map((obj)=>{
-                if(obj?.name==='runType'){
-                    setSelectedValues((prev)=>{
-                        return [...(prev.filter((prevObj)=>prevObj?.name!=='runType')),{...obj,value:event.target.value}]
-                    })
-                }
-            })
-        }
-        else{
-            setSelectedValues([...selectedValues,event.target])
-        }
+        
     };
     const [hardwareVersion, setHardwareVersion] = useState('');
     const handleHardwareVersionChange = (event: SelectChangeEvent) => {
@@ -131,20 +118,7 @@ const FilterMenu: React.FC<Props> = (props) => {
         else{
             setSelectedValues([...selectedValues,event.target])
         }
-        setHardwareVersion(event.target.value);
-        const isHardwareVersionExist = selectedValues.filter((obj)=>obj?.name==='hardwareVersion').length
-        if(isHardwareVersionExist){
-            selectedValues.map((obj)=>{
-                if(obj?.name==='hardwareVersion'){
-                    setSelectedValues((prev)=>{
-                        return [...(prev.filter((prevObj)=>prevObj?.name!=='hardwareVersion')),{...obj,value:event.target.value}]
-                    })
-                }
-            })
-        }
-        else{
-            setSelectedValues([...selectedValues,event.target])
-        }
+        
     };
     const [softwareVersion, setSoftwareVersion] = useState('');
     const handleSoftwareVersionChange = (event: SelectChangeEvent) => {
